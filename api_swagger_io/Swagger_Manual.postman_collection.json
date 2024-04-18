@@ -3,7 +3,7 @@
 		"_postman_id": "480a27b7-fc20-4060-a3da-f1e66e0b6cee",
 		"name": "Swagger Manual",
 		"description": "[https://petstore.swagger.io](https://petstore.swagger.io)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33817918"
 	},
 	"item": [
@@ -24,7 +24,12 @@
 								}
 							}
 						},
-						"url": "{{url}}pet"
+						"url": {
+							"raw": "{{url}}pet",
+							"host": [
+								"{{url}}pet"
+							]
+						}
 					},
 					"response": []
 				},
@@ -56,7 +61,16 @@
 								}
 							]
 						},
-						"url": "{{url}}pet/{{petId}}/uploadImage"
+						"url": {
+							"raw": "{{url}}pet/{{petId}}/uploadImage",
+							"host": [
+								"{{url}}pet"
+							],
+							"path": [
+								"{{petId}}",
+								"uploadImage"
+							]
+						}
 					},
 					"response": []
 				},
@@ -74,7 +88,12 @@
 								}
 							}
 						},
-						"url": "{{url}}pet"
+						"url": {
+							"raw": "{{url}}pet",
+							"host": [
+								"{{url}}pet"
+							]
+						}
 					},
 					"response": []
 				},
@@ -247,7 +266,15 @@
 								}
 							}
 						},
-						"url": "{{url}}store/order"
+						"url": {
+							"raw": "{{url}}store/order",
+							"host": [
+								"{{url}}store"
+							],
+							"path": [
+								"order"
+							]
+						}
 					},
 					"response": []
 				},
@@ -304,7 +331,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{url}}store/inventory"
+						"url": {
+							"raw": "{{url}}store/inventory",
+							"host": [
+								"{{url}}store"
+							],
+							"path": [
+								"inventory"
+							]
+						}
 					},
 					"response": []
 				}
@@ -327,7 +362,15 @@
 								}
 							}
 						},
-						"url": "{{url}}user/createWithArray"
+						"url": {
+							"raw": "{{url}}user/createWithArray",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"createWithArray"
+							]
+						}
 					},
 					"response": []
 				},
@@ -345,7 +388,15 @@
 								}
 							}
 						},
-						"url": "{{url}}user/createWithList"
+						"url": {
+							"raw": "{{url}}user/createWithList",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"createWithList"
+							]
+						}
 					},
 					"response": []
 				},
@@ -463,7 +514,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{url}}user/logout"
+						"url": {
+							"raw": "{{url}}user/logout",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"logout"
+							]
+						}
 					},
 					"response": []
 				},
@@ -481,7 +540,12 @@
 								}
 							}
 						},
-						"url": "{{url}}user"
+						"url": {
+							"raw": "{{url}}user",
+							"host": [
+								"{{url}}user"
+							]
+						}
 					},
 					"response": []
 				}

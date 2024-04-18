@@ -3,7 +3,7 @@
 		"_postman_id": "d24cd681-3d9a-46d5-8f8b-b0e07b4e9ec9",
 		"name": "API  Automated Tests",
 		"description": "> [https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md#add-an-item-to-cart](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md#add-an-item-to-cart) \n  \n> [https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/valentines-book-list.md](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/valentines-book-list.md)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33817918"
 	},
 	"item": [
@@ -33,7 +33,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/status"
+						"url": {
+							"raw": "{{BaseURL}}/status",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"status"
+							]
+						}
 					},
 					"response": []
 				},
@@ -174,7 +182,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
-						"url": "{{BaseURL}}/carts"
+						"url": {
+							"raw": "{{BaseURL}}/carts",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
 					},
 					"response": []
 				},
@@ -477,7 +493,15 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/api-clients"
+						"url": {
+							"raw": "{{BaseURL}}/api-clients",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api-clients"
+							]
+						}
 					},
 					"response": []
 				},
@@ -513,7 +537,15 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/api-clients",
+						"url": {
+							"raw": "{{BaseURL}}/api-clients",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api-clients"
+							]
+						},
 						"description": "Try to add another client on same email and different clientName"
 					},
 					"response": []
@@ -551,9 +583,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{MyToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [
@@ -573,7 +609,15 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/orders"
+						"url": {
+							"raw": "{{BaseURL}}/orders",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -610,9 +654,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{MyToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [
@@ -632,7 +680,15 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/orders"
+						"url": {
+							"raw": "{{BaseURL}}/orders",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -665,9 +721,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{MyToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [
@@ -736,9 +796,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{MyToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [
@@ -796,9 +860,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{MyToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MyToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [
@@ -870,7 +938,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/status"
+						"url": {
+							"raw": "{{baseUrl}}/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status"
+							]
+						}
 					},
 					"response": []
 				},
@@ -990,7 +1066,15 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/api-clients"
+						"url": {
+							"raw": "{{baseUrl}}/api-clients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api-clients"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1013,9 +1097,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{accesToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accesToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -1028,7 +1116,15 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/orders"
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1051,13 +1147,25 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{accesToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accesToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/orders"
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1080,9 +1188,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{accesToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accesToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -1124,9 +1236,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{accesToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accesToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -1177,9 +1293,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{accesToken}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accesToken}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],

@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "8351eb18-3aa9-4bac-ab09-29bd94bb4416",
 		"name": "Reqres.in Manual",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33817918"
 	},
 	"item": [
@@ -34,7 +34,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}users/2"
+						"url": {
+							"raw": "{{URL}}users/2",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -43,7 +51,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}users/23"
+						"url": {
+							"raw": "{{URL}}users/23",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"23"
+							]
+						}
 					},
 					"response": []
 				},
@@ -52,7 +68,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}unknown"
+						"url": {
+							"raw": "{{URL}}unknown",
+							"host": [
+								"{{URL}}unknown"
+							]
+						}
 					},
 					"response": []
 				},
@@ -61,7 +82,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}unknown/2"
+						"url": {
+							"raw": "{{URL}}unknown/2",
+							"host": [
+								"{{URL}}unknown"
+							],
+							"path": [
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -70,7 +99,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}unknown/23"
+						"url": {
+							"raw": "{{URL}}unknown/23",
+							"host": [
+								"{{URL}}unknown"
+							],
+							"path": [
+								"23"
+							]
+						}
 					},
 					"response": []
 				},
@@ -88,7 +125,12 @@
 								}
 							}
 						},
-						"url": "{{URL}}users"
+						"url": {
+							"raw": "{{URL}}users",
+							"host": [
+								"{{URL}}users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -106,7 +148,15 @@
 								}
 							}
 						},
-						"url": "{{URL}}users/2"
+						"url": {
+							"raw": "{{URL}}users/2",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -151,7 +201,15 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "{{URL}}users/2"
+						"url": {
+							"raw": "{{URL}}users/2",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -169,7 +227,12 @@
 								}
 							}
 						},
-						"url": "{{URL}}register"
+						"url": {
+							"raw": "{{URL}}register",
+							"host": [
+								"{{URL}}register"
+							]
+						}
 					},
 					"response": []
 				},
@@ -187,7 +250,12 @@
 								}
 							}
 						},
-						"url": "{{URL}}register"
+						"url": {
+							"raw": "{{URL}}register",
+							"host": [
+								"{{URL}}register"
+							]
+						}
 					},
 					"response": []
 				},
@@ -205,7 +273,12 @@
 								}
 							}
 						},
-						"url": "{{URL}}login"
+						"url": {
+							"raw": "{{URL}}login",
+							"host": [
+								"{{URL}}login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -223,7 +296,12 @@
 								}
 							}
 						},
-						"url": "{{URL}}login"
+						"url": {
+							"raw": "{{URL}}login",
+							"host": [
+								"{{URL}}login"
+							]
+						}
 					},
 					"response": []
 				},

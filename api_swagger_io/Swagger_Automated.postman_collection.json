@@ -3,7 +3,7 @@
 		"_postman_id": "cde87b5b-ea74-4ed7-a9c1-791b4dd6e021",
 		"name": "Swagger Automated",
 		"description": "[https://petstore.swagger.io](https://petstore.swagger.io)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33817918"
 	},
 	"item": [
@@ -29,7 +29,15 @@
 				},
 				"method": "POST",
 				"header": [],
-				"url": "{{url}}oauth/authorize"
+				"url": {
+					"raw": "{{url}}oauth/authorize",
+					"host": [
+						"{{url}}oauth"
+					],
+					"path": [
+						"authorize"
+					]
+				}
 			},
 			"response": []
 		},
@@ -87,7 +95,16 @@
 						}
 					}
 				},
-				"url": "{{url}}api/v3/pet"
+				"url": {
+					"raw": "{{url}}api/v3/pet",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"v3",
+						"pet"
+					]
+				}
 			},
 			"response": []
 		},
@@ -115,7 +132,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{url}}api/v3/pet/{{petId}}"
+				"url": {
+					"raw": "{{url}}api/v3/pet/{{petId}}",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"v3",
+						"pet",
+						"{{petId}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -162,7 +189,16 @@
 						}
 					}
 				},
-				"url": "{{url}}api/v3/pet"
+				"url": {
+					"raw": "{{url}}api/v3/pet",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"v3",
+						"pet"
+					]
+				}
 			},
 			"response": []
 		},
@@ -190,7 +226,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{url}}api/v3/pet/{{petId}}"
+				"url": {
+					"raw": "{{url}}api/v3/pet/{{petId}}",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"v3",
+						"pet",
+						"{{petId}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -213,7 +259,17 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "{{url}}api/v3/pet/{{petId}}"
+				"url": {
+					"raw": "{{url}}api/v3/pet/{{petId}}",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"v3",
+						"pet",
+						"{{petId}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -240,7 +296,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{url}}api/v3/pet/{{petId}}"
+				"url": {
+					"raw": "{{url}}api/v3/pet/{{petId}}",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"v3",
+						"pet",
+						"{{petId}}"
+					]
+				}
 			},
 			"response": []
 		}
