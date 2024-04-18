@@ -1,0 +1,1276 @@
+{
+	"info": {
+		"_postman_id": "d24cd681-3d9a-46d5-8f8b-b0e07b4e9ec9",
+		"name": "API  Automated Tests",
+		"description": "> [https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md#add-an-item-to-cart](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md#add-an-item-to-cart) \n  \n> [https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/valentines-book-list.md](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/valentines-book-list.md)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33817918"
+	},
+	"item": [
+		{
+			"name": "Simple Grocery Store API",
+			"item": [
+				{
+					"name": "Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains expected text UP\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"UP\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"try { //as json\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var value = responseBody[0].id;\r",
+									"    pm.collectionVariables.set(\"productID\", value);\r",
+									"    console.log(\"Collection variable 'productID' set with value:\", value);\r",
+									"}\r",
+									"\r",
+									"catch (error) {\r",
+									"    console.error(\"Error parsing JSON:\", error);\r",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/products?category=candy&results=8&available=true",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "candy",
+									"description": "Choose categorie / coffee / fresh-produce etc"
+								},
+								{
+									"key": "results",
+									"value": "8",
+									"description": "Max results"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"description": "Is it available"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/products/:productId?product-label=true",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"products",
+								":productId"
+							],
+							"query": [
+								{
+									"key": "product-label",
+									"value": "true"
+								}
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "{{productID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains expected text true\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+									"});\r",
+									"\r",
+									"try {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var value = responseBody.cartId;\r",
+									"    pm.collectionVariables.set(\"cartID\", value);\r",
+									"    console.log(\"Collection variable 'cartID' set with value:\", value);\r",
+									"}\r",
+									"    \r",
+									" catch (error) {\r",
+									"    console.error(\"Error parsing JSON:\", error);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{BaseURL}}/carts"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/carts/:cartId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"carts",
+								":cartId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Items to Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains expected text true\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include('\"created\":true');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":{{productID}},\r\n    \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/carts/:cartId/items",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Cart Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response body should be an empty array\", function () {\r",
+									"    pm.expect(responseBody).to.be.an('array');\r",
+									"    pm.expect(responseBody).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"try {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var value = responseBody[0].id;\r",
+									"    pm.collectionVariables.set(\"itemID\", value);\r",
+									"    console.log(\"Collection variable 'itemID' set with value:\", value);\r",
+									"}\r",
+									"    \r",
+									"catch (error) {\r",
+									"    console.error(\"Error parsing JSON:\", error);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/carts/:cartId/items",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Quantity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\":{{productID}},\r\n   \"quantity\": 2\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartID}}"
+								},
+								{
+									"key": "itemId",
+									"value": "{{itemID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartID}}"
+								},
+								{
+									"key": "itemId",
+									"value": "{{itemID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register API Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains expected text accessToken\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"accessToken\");\r",
+									"});\r",
+									"\r",
+									"try {\r",
+									"    if (pm.response.to.have.status(201)){\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var value = responseBody.accessToken;\r",
+									"    pm.collectionVariables.set(\"MyToken\", value);\r",
+									"    console.log(\"Collection variable 'MyToken' set with value:\", value);\r",
+									"}\r",
+									"    else (console.log('Token is not updated'))\r",
+									"}\r",
+									"\r",
+									"catch (error) {\r",
+									"    console.error(\"Error parsing JSON:\", error);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientName\":\"{{clientName}}\",\r\n    \"clientEmail\":\"{{clientEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/api-clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Register API Client Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains expected text\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"API client already registered. Try a different email\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientName\":\"{{clientName}}\",\r\n    \"clientEmail\":\"{{clientEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/api-clients",
+						"description": "Try to add another client on same email and different clientName"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains expected text true\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include('\"created\":true');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{MyToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\":\"{{cartID}}\",\r\n    \"customerName\":\"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"try {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var value = responseBody[0].id;\r",
+									"    pm.globals.set(\"orderID\", value);\r",
+									"    console.log(\"Collection variable 'orderID' set with value:\", value);\r",
+									"}\r",
+									"    \r",
+									"catch (error) {\r",
+									"    console.error(\"Error parsing JSON:\", error);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{MyToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"UpdatedName\",\"Lady Gaga\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{MyToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"customerName\":\"{{UpdatedName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/orders/:orderId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"var expectedName = pm.globals.get('UpdatedName');\r",
+									"\r",
+									"pm.test(\"Full Name Assertion\", function () {\r",
+									"    pm.expect(responseBody.customerName).to.eql(expectedName);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{MyToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/orders/:orderId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{MyToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/orders/:orderId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valentine's Book List API",
+			"item": [
+				{
+					"name": "Status API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const response1 = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Test name\",() => {\r",
+									"    pm.expect(response1.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"console.log(response1.status);\r",
+									"console.log(response1['status']);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/status"
+					},
+					"response": []
+				},
+				{
+					"name": "List of books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"const nonFictionBooks = response.filter((book) => book.available == true);\r",
+									"\r",
+									"console.log(nonFictionBooks[0].id);\r",
+									"\r",
+									"pm.globals.set(\"bookID\", nonFictionBooks[0].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books?limit=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "non-fiction",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books/:bookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register API client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", ()=> {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientName\": \"Leon Kennedy\",\r\n    \"clientEmail\": \"11@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api-clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Order a book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", ()=> {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accesToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 3,\r\n  \"customerName\": \"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Orders check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accesToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Order review by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accesToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderdId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accesToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Vi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderdId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accesToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Johny\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderdId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "https://simple-grocery-store-api.glitch.me",
+			"type": "string"
+		},
+		{
+			"key": "MyToken",
+			"value": "05a7b04b369ea5d5f50a73c1f98066fa3bd0f616ccc4df8d7910f08ee3095e2d",
+			"type": "string"
+		},
+		{
+			"key": "productID",
+			"value": ""
+		},
+		{
+			"key": "cartID",
+			"value": ""
+		},
+		{
+			"key": "itemID",
+			"value": ""
+		},
+		{
+			"key": "clientName",
+			"value": "TestName",
+			"type": "string"
+		},
+		{
+			"key": "clientEmail",
+			"value": "example@o2.com",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://simple-books-api.glitch.me",
+			"type": "string"
+		},
+		{
+			"key": "accesToken",
+			"value": "79563a6d379777f83abf6dc113bcb80ad7dd65fc2f86f67d8215aa5fe4ebd36f",
+			"type": "string"
+		}
+	]
+}

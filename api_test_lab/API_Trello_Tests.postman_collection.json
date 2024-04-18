@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "a3f4e553-e7d7-438f-935c-ffd2a1aa0ed4",
+		"name": "API Trello Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33817918"
+	},
+	"item": [
+		{
+			"name": "Boards List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/members/me/boards?key={{key}}&token={{token}}",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"members",
+						"me",
+						"boards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Board Creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"  pm.response.to.have.status(200);\r",
+							"  resBody = pm.response.json();\r",
+							"  pm.collectionVariables.set(\"boardId\", resBody.id);\r",
+							"});\r",
+							"\r",
+							"pm.test('Set title verification', function() {\r",
+							"    pm.expect(resBody.name).eql(pm.collectionVariables.get('boardTitle'));\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/boards/?name={{boardTitle}}&key={{key}}&token={{token}}",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{boardTitle}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Board Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resBody;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    resBody = pm.response.json();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verification of table title update\", function () {\r",
+							"     pm.expect(resBody.name).to.eql(pm.collectionVariables.get(\"boardUpdateTitle\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verification of table description update\", function () {\r",
+							"     pm.expect(resBody.desc).to.eql(pm.collectionVariables.get(\"boardUpdateDesc\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/boards/{{boardId}}?key={{key}}&token={{token}}&name={{boardUpdateTitle}}&desc={{boardUpdateDesc}}",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"boards",
+						"{{boardId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "name",
+							"value": "{{boardUpdateTitle}}"
+						},
+						{
+							"key": "desc",
+							"value": "{{boardUpdateDesc}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Board Deletion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/boards/{{boardId}}?key={{key}}&token={{token}}",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"boards",
+						"{{boardId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "name",
+							"value": "test table v2",
+							"disabled": true
+						},
+						{
+							"key": "desc",
+							"value": "test table desc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 500 ms\", function() {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "boardId",
+			"value": ""
+		},
+		{
+			"key": "boardTitle",
+			"value": "test table 2",
+			"type": "string"
+		},
+		{
+			"key": "boardUpdateTitle",
+			"value": "test table v2",
+			"type": "string"
+		},
+		{
+			"key": "boardUpdateDesc",
+			"value": "test table desc",
+			"type": "string"
+		}
+	]
+}

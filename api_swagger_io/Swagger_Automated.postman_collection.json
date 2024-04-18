@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "cde87b5b-ea74-4ed7-a9c1-791b4dd6e021",
+		"name": "Swagger Automated",
+		"description": "[https://petstore.swagger.io](https://petstore.swagger.io)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33817918"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": "{{url}}oauth/authorize"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The id is 30\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(30);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The name is MinLion\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"MinLion\");\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"petId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function() { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"petId\", 30);\r",
+							"pm.environment.set(\"petName\", \"MinLion\");\r",
+							"pm.environment.set(\"petStatus\", \"available\");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{petId}},\r\n  \"name\": \"{{petName}}\",\r\n  \"category\": {\r\n    \"id\": 4,\r\n    \"name\": \"Lions\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"{{petStatus}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}api/v3/pet"
+			},
+			"response": []
+		},
+		{
+			"name": "Find modified pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The name is MinLion\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"MinLion\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function() { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}api/v3/pet/{{petId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Update the selected pet Info",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"petNewName\", \"MinLion2\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The name is MinLion2\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"MinLion2\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function() { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 30,\r\n  \"name\": \"{{petNewName}}\",\r\n  \"category\": {\r\n    \"id\": 4,\r\n    \"name\": \"Lions\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}api/v3/pet"
+			},
+			"response": []
+		},
+		{
+			"name": "Find modified pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The name is MinLion\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"MinLion2\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function() { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}api/v3/pet/{{petId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete created pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{url}}api/v3/pet/{{petId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Find modified pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches Pet not found\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Pet not found\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function() { \r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}api/v3/pet/{{petId}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Response time is less than 500 ms\", function() {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "petId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

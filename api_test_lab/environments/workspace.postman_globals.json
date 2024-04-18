@@ -1,0 +1,45 @@
+{
+	"id": "9f49b878-344a-4411-8ef9-9535c8dec63b",
+	"values": [
+		{
+			"key": "UrlFireFly",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "currencyCode",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "currencyName",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "currencySymbol",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "categoriesId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "URLjson",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2024-04-18T10:55:04.231Z",
+	"_postman_exported_using": "Postman/10.24.22"
+}

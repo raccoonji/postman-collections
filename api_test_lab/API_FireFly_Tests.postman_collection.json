@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "25fb2309-b140-4e1c-a340-c509f6282db6",
+		"name": "API FireFly Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33817918"
+	},
+	"item": [
+		{
+			"name": "Bills FireFly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 300 ms\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{UrlFireFly}}/api/v1/bills"
+			},
+			"response": []
+		},
+		{
+			"name": "Currency FireFly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NSBTK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{UrlFireFly}}/api/v1/currencies?page=1",
+					"host": [
+						"{{UrlFireFly}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"currencies"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Currency",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{UrlFireFly}}/api/v1/currencies?enabled=true&default=false&code={{currencyCode}}&name={{currencyName}}&symbol={{currencySymbol}}&decimal_places=2",
+					"host": [
+						"{{UrlFireFly}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"currencies"
+					],
+					"query": [
+						{
+							"key": "enabled",
+							"value": "true"
+						},
+						{
+							"key": "default",
+							"value": "false"
+						},
+						{
+							"key": "code",
+							"value": "{{currencyCode}}"
+						},
+						{
+							"key": "name",
+							"value": "{{currencyName}}"
+						},
+						{
+							"key": "symbol",
+							"value": "{{currencySymbol}}"
+						},
+						{
+							"key": "decimal_places",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Currency Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NSBTK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"2977\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"2024-01-27T10:55:43+01:00\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"default\": false,\r\n    \"enabled\": true,\r\n    \"name\": \"{{currencyName}}\",\r\n    \"code\": \"{{currencyCode}}\",\r\n    \"symbol\": \"{{currencySymbol}}\",\r\n    \"decimal_places\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{UrlFireFly}}/api/v1/currencies/{{currencyCode}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Currency Deletion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{UrlFireFly}}/api/v1/currencies/{{currencyCode}}"
+			},
+			"response": []
+		},
+		{
+			"name": "All expenses Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200 ms\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{UrlFireFly}}/api/v1/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "New Category Addition",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200 ms\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Prort\",\r\n  \"notes\": \"Post 443\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{UrlFireFly}}/api/v1/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200 ms\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Port 80\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0MCIsImp0aSI6ImQ3MGZjYjM4ODUyYWNmMmE4MTc2NWJmMGM0MDk5YTJmYWJjYTlhNzc1NGEyOTBkOTkxNmZkNTNjMjBhNjdlYjA3NmM1ZmE0N2YxMzMxMTY1IiwiaWF0IjoxNzA1MjQ2NTE2LjY0OTk5OSwibmJmIjoxNzA1MjQ2NTE2LjY1MDAwMywiZXhwIjoxNzM2ODY4OTE2LjYzNTUsInN1YiI6IjE0MTMiLCJzY29wZXMiOltdfQ.OlsHbRreR7i3uO9LCTgECaDaOKXDPPTGhg-a4zPfVch5e1zte-YN7erY6vdTbi_erADcAceZ1_KiUOgYYohtcFonlRM0mq9U5q9KjOyRcht4y1vy8tqVltWB3i1UGxKk71LQt3Nb-egotJ79tgCZqcaO6ZFcoM864hCb40XLRjMTZ1_BecguS4ALHY3YHE8JSb2tX4XLxF78k1Zv8lM-pjZILSfKdpKtlG1UtbZZCTTCKCOQGpRs4AOQsSBTUoRyBSz6dzbzNqIXQ1F78MdgDOi9wmLgCVre8bOMksleIMbiufh9jrpVnXmpdBN0sSWC3IKkcBgrMgYtvN8CKlo7JukV7Olgb6qptOmrmOMEDbqycpH1-yD3nYAJQfPAgE-__Zamr4i-QZ972WYSyDcs-eVo0pDIlr3UEzOyyIsOU2fGH_OlA96dGx0alE9wOjoUlbKV6uI_QCkLIYVCx96xE5my3Z3U6VmEo8egncU5m5NmgBvo3zeBHYFTjCqUrAQCXFwg9oaWCN7YBjpV11xjabTJzZx2e5Kd7rRkFW0AU5zrDUtULn5nwAESOSwgP9lg2VHWvagvvLzLi3eKGlzCeAZ8LFyJKGQnq-AF7YfpP6x2QBah-QMgtAamdG3OXR1eKNg1O-K5A2XZt32TPVsoQQ-2q8R8T7plMG1iRwbNrz8"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Prort\",\r\n  \"notes\": \"Port 80\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{UrlFireFly}}/api/v1/categories/{{categoriesId}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

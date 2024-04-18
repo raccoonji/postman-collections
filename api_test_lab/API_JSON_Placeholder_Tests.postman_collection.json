@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "3a6b7239-f0f3-44a0-8405-316e51e15267",
+		"name": "API JSON Placeholder Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33817918"
+	},
+	"item": [
+		{
+			"name": "Posts global variable",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Users Assertions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resBody;\r",
+							"\r",
+							"pm.test(\"Code Response Verification\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    resBody = pm.response.json();\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Time Response Verification\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Number of returned users verification\", function() {\r",
+							"    pm.expect(resBody.length).equals(10)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"User name verification\", function() {\r",
+							"    pm.expect(resBody[0].name).to.have.length.greaterThan(1)\r",
+							"    pm.expect(resBody[0].name).contains(\"Graham\")\r",
+							"    \r",
+							"    pm.globals.set(\"name\", resBody[0].name)\r",
+							"    pm.environment.set(\"phone\", resBody[0].phone)\r",
+							"    pm.collectionVariables.set(\"websiteUrl\", resBody[0].website)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URLjson}}/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Comments parameters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLjson}}/comments?postId=2&email=manual1@test.com&id=1",
+					"host": [
+						"{{URLjson}}"
+					],
+					"path": [
+						"comments"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "2"
+						},
+						{
+							"key": "email",
+							"value": "manual1@test.com"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Posts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"{{postTitle}}\",\r\n    \"body\": \"{{postBody}}\",\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URLjson}}/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"{{putTitle}}\",\r\n    \"body\": \"{{putBody}}\",\r\n    \"userId\": {{putId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URLjson}}/posts/64"
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{URLjson}}/posts/64"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://jsonplaceholder.typicode.com",
+			"type": "string"
+		}
+	]
+}
